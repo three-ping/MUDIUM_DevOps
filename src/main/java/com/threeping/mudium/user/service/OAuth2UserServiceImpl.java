@@ -130,7 +130,7 @@ public class OAuth2UserServiceImpl implements OAuth2UserService {
         params.add("grant_type", "authorization_code");
         params.add("client_id", "454fe5e6a0e0c020cf155003e27761e2");  // Kakao Developer에서 얻은 클라이언트 ID
         params.add("client_secret", "3pzUaMGh7JwXxKU9c1HajsQnNUQ0jDAN");  // Kakao Developer에서 얻은 클라이언트 시크릿
-        params.add("redirect_uri", "http://127.0.0.1:8080/api/users/oauth2/kakao");  // 등록한 리다이렉트 URI
+        params.add("redirect_uri", "http://localhost/mudium-ingress/boot/api/users/oauth2/kakao");  // 등록한 리다이렉트 URI
         params.add("code", code);
 
         HttpHeaders headers = new HttpHeaders();
