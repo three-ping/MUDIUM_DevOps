@@ -39,7 +39,7 @@ public class OAuth2Controller {
         log.info("userDTO: {}", user);
 
         // Create a RedirectView to redirect to the specified URL
-        RedirectView redirectView = new RedirectView("http://localhost:5173/musicalInfo");
+        RedirectView redirectView = new RedirectView("/musicalInfo");
 
         // Encode all user information as query parameters
         StringBuilder userInfo = new StringBuilder();
