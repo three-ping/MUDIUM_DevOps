@@ -3,6 +3,7 @@ package com.threeping.mudium.scope.controller;
 import com.threeping.mudium.common.ResponseDTO;
 import com.threeping.mudium.scope.aggregate.entity.ScopeEntity;
 import com.threeping.mudium.scope.dto.AverageScopeDTO;
+import com.threeping.mudium.scope.dto.ScopeDTO;
 import com.threeping.mudium.scope.service.ScopeService;
 import com.threeping.mudium.scope.vo.ScopeVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,13 @@ public class ScopeController {
     @Autowired
     public ScopeController(ScopeService scopeService) {
         this.scopeService = scopeService;
+    }
+
+    @GetMapping("/{userId}/{musicalId}")
+    public ResponseDTO<?> findMyScope (@PathVariable Long userId, @PathVariable Long musicalId) {
+        ScopeDTO selectedScope = scopeService.findMyScope(musicalId, userId);
+        
+        return ResponseDTO.ok(selectedScope);
     }
 
     @PostMapping("/create/{userId}/{musicalId}")

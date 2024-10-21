@@ -21,4 +21,6 @@ public interface ScopeService {
     AverageScopeDTO calculateAverageScope(Long musicalId);
 
     List<ScopeEntity> findScopesByUserId(Long userId);
+
+    ScopeDTO findMyScope(Long musicalId, Long userId);
 }

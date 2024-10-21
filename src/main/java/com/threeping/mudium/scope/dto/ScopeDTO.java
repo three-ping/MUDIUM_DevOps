@@ -9,6 +9,8 @@ import lombok.*;
 @ToString
 public class ScopeDTO {
 
+    private Long userId;
+
     private Long musicalId;
 
     private Double scope;

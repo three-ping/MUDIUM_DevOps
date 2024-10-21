@@ -26,4 +26,5 @@ public interface ScopeRepository extends JpaRepository<ScopeEntity, ScopeId> {
     @Query("SELECT s.musicalId, COALESCE(AVG(s.scope), 0.0) FROM ScopeEntity s WHERE s.musicalId IN :musicalIds GROUP BY s.musicalId")
     List<Object[]> findAverageScopesByMusicalIds(@Param("musicalIds") List<Long> musicalIds);
 
+    Optional<ScopeEntity> findScopeByMusicalIdAndUserId(Long musicalId, Long userId);
 }

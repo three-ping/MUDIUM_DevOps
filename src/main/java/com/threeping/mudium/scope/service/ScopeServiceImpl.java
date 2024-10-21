@@ -6,6 +6,8 @@
     import com.threeping.mudium.scope.dto.ScopeDTO;
     import com.threeping.mudium.scope.repository.ScopeRepository;
     import com.threeping.mudium.scope.vo.ScopeVO;
+    import com.threeping.mudium.user.aggregate.dto.UserDTO;
+    import com.threeping.mudium.user.aggregate.entity.UserEntity;
     import com.threeping.mudium.user.service.UserService;
     import org.springframework.stereotype.Service;
     import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,23 @@
         public ScopeServiceImpl(ScopeRepository scopeRepository, UserService userService) {
             this.scopeRepository = scopeRepository;
             this.userService = userService;
+        }
+
+        @Override
+        public ScopeDTO findMyScope(Long musicalId, Long userId) {
+            ScopeEntity entity = scopeRepository.findScopeByMusicalIdAndUserId(musicalId, userId)
+                    .orElse(null);
+            ScopeDTO scopeDTO = new ScopeDTO();
+            scopeDTO.setUserId(userId);
+            scopeDTO.setMusicalId(musicalId);
+
+            if (entity != null) {
+                scopeDTO.setScope(entity.getScope());
+            } else {
+                scopeDTO.setScope(0D);
+            }
+
+            return scopeDTO;
         }
 
         @Override
@@ -97,6 +116,7 @@
 //            UserEntity user = userService.getUserByUserId(userId);
             // 기존 별점 존재 여부 확인
             ScopeEntity existingScope = scopeRepository.findById(scopeId).orElse(null);
+            UserDTO user = userService.findByUserId(userId);
 
             if (existingScope != null) {
                 // 별점이 이미 존재하는 경우 -> 수정
@@ -110,6 +130,7 @@
                 scopeEntity.setScope(scopeVO.getScope());
                 scopeEntity.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
                 scopeEntity.setUserId(userId);
+                scopeEntity.setUserNickname(user.getUserName());
                 return scopeRepository.save(scopeEntity);
             }
 

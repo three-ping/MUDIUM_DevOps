@@ -9,5 +9,5 @@ import lombok.*;
 @ToString
 public class ScopeVO {
 
-    private Double Scope;
+    private Double scope;
 }

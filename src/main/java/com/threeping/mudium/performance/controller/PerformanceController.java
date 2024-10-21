@@ -39,7 +39,7 @@ public class PerformanceController {
 
 //    @GetMapping("/{musicalId}/{performanceId}")
 //    public ResponseDTO<?> findPerformance(@PathVariable Long musicalId, @PathVariable Long performanceId) {
-//        PerformanceDTO dto = 
+//        PerformanceDTO dto =
 //    }
 
     // 메인 페이지에서 월간 랭킹을 주기 위한 핸들러 메서드
